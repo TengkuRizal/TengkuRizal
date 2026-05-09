@@ -54,82 +54,56 @@ I built an end-to-end DevSecOps homelab that demonstrates secure software delive
 
 The homelab simulates a real-world DevSecOps workflow where code is built, scanned, deployed, monitored, alerted, and converted into an incident ticket automatically.
 
+```text
 Developer Push
-
   ↓
-
 GitLab CI/CD
-
   ↓
-
 Docker Image Build
-
   ↓
-
 Container Registry Push
-
   ↓
-
 Trivy Image Vulnerability Scan
-
   ↓
-
 SBOM Generation with Syft
-
   ↓
-
 Kubernetes Configuration Scan
-
   ↓
-
 Kubernetes Deployment via GitLab Agent
-
   ↓
-
 Kubernetes Rollout Verification
-
   ↓
-
 Prometheus + Grafana Monitoring
-
   ↓
-
 Wazuh SIEM Alert Detection
-
   ↓
-
 High-Severity Alert Forwarding
-
   ↓
-
 Shuffle SOAR Webhook
-
   ↓
-
 HTTP Response Action
-
   ↓
-
 GitHub Incident Issue Created Automatically
-
 ```
 
-🧱 Homelab Environment
+---
+
+## 🧱 Homelab Environment
 
 My DevSecOps homelab is built on a segmented, multi-node infrastructure designed to simulate enterprise-style platform, network, and security operations.
 
-Infrastructure Layer
+### Infrastructure Layer
 
-* Proxmox virtualization
-* Multiple mini PCs as physical lab nodes
-* pfSense physical firewall
-* MikroTik home router
-* WireGuard remote access
-* VLAN segmentation
-* Inter-VLAN routing
-* Firewall rules
-* SPAN / traffic mirroring design
-* Segmented SOC, target, and attacker networks
+- Proxmox virtualization
+- Multiple mini PCs as physical lab nodes
+- pfSense physical firewall
+- MikroTik home router
+- WireGuard remote access
+- VLAN segmentation
+- Inter-VLAN routing
+- Firewall rules
+- SPAN / traffic mirroring design
+- Segmented SOC, target, and attacker networks
 
 Network Segments
 
