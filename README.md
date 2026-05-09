@@ -44,47 +44,75 @@ I am targeting mid-level roles in:
 - VLAN segmentation
 - Incident response workflow automation
 
----
+
 
 🧪 Featured Homelab Project
 
-### DevSecOps Homelab: CI/CD + Kubernetes + Monitoring + SIEM + SOAR + Incident Automation
+DevSecOps Homelab: CI/CD + Kubernetes + Monitoring + SIEM + SOAR + Incident Automation
 
 I built an end-to-end DevSecOps homelab that demonstrates secure software delivery, Kubernetes deployment, infrastructure monitoring, SIEM alerting, SOAR automation, and automated incident ticket creation.
 
 The homelab simulates a real-world DevSecOps workflow where code is built, scanned, deployed, monitored, alerted, and converted into an incident ticket automatically.
 
-End-to-End Workflow
-
 Developer Push
+
   ↓
+
 GitLab CI/CD
+
   ↓
+
 Docker Image Build
+
   ↓
+
 Container Registry Push
+
   ↓
+
 Trivy Image Vulnerability Scan
+
   ↓
+
 SBOM Generation with Syft
+
   ↓
+
 Kubernetes Configuration Scan
+
   ↓
+
 Kubernetes Deployment via GitLab Agent
+
   ↓
+
 Kubernetes Rollout Verification
+
   ↓
+
 Prometheus + Grafana Monitoring
+
   ↓
+
 Wazuh SIEM Alert Detection
+
   ↓
+
 High-Severity Alert Forwarding
+
   ↓
+
 Shuffle SOAR Webhook
+
   ↓
+
 HTTP Response Action
+
   ↓
+
 GitHub Incident Issue Created Automatically
+
+```
 
 🧱 Homelab Environment
 
