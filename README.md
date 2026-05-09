@@ -1,468 +1,107 @@
 # Hi, I'm Tengku Rizal 👋
 
-I am an IT, Network Security, and Infrastructure Operations professional with hands-on experience in network security operations, firewall change management, vulnerability review, compliance support, incident management, infrastructure operations, service delivery, and stakeholder coordination.
+**DevSecOps Engineer** — I build secure CI/CD pipelines, automate threat response, and run enterprise-style security operations from a bare-metal homelab.
 
-I am currently positioning myself for mid-level DevOps / DevSecOps / Infrastructure Security / Platform Engineering roles by building a full-stack DevSecOps homelab that covers infrastructure, network segmentation, CI/CD, Kubernetes deployment, security scanning, observability, SIEM monitoring, SOAR automation, and incident ticketing.
-
-My goal is to bridge traditional infrastructure and security operations with modern DevSecOps automation.
+15+ years in network security, firewall operations, and vulnerability management — now applied to modern DevSecOps engineering.
 
 ---
 
-## 🎯 Career Target
+## 🔐 What I Build
 
-I am targeting mid-level roles in:
-
-- DevOps Engineering
-- DevSecOps Engineering
-- Platform Engineering
-- Infrastructure Security Engineering
-- Security Automation Engineering
-- Cloud and Security Operations
-- SOC Automation / SIEM Engineering
-- Kubernetes / Container Platform Operations
-
----
-
-## 🔐 Current Focus
-
-- DevSecOps automation
-- GitLab CI/CD
-- GitLab Runner operations
-- GitLab Kubernetes Agent
-- Docker container build and deployment
-- Kubernetes deployment and operations
-- Kubernetes monitoring and observability
-- Container image vulnerability scanning
-- SBOM generation
-- Kubernetes configuration scanning
-- Wazuh SIEM monitoring
-- Shuffle SOAR automation
-- GitHub incident ticketing
-- Prometheus and Grafana monitoring
-- Infrastructure and network security
-- Firewall rule management
-- VLAN segmentation
-- Incident response workflow automation
-
----
-
-## 🧪 Featured Homelab Project
-
-### DevSecOps Homelab: CI/CD + Kubernetes + Monitoring + SIEM + SOAR + Incident Automation
-
-I built an end-to-end DevSecOps homelab that demonstrates secure software delivery, Kubernetes deployment, infrastructure monitoring, SIEM alerting, SOAR automation, and automated incident ticket creation.
-
-The homelab simulates a real-world DevSecOps workflow where code is built, scanned, deployed, monitored, alerted, and converted into an incident ticket automatically.
-
-### End-to-End Workflow
-
-```text
-Developer Push
-  ↓
-GitLab CI/CD
-  ↓
-Docker Image Build
-  ↓
-Container Registry Push
-  ↓
-Trivy Image Vulnerability Scan
-  ↓
-SBOM Generation with Syft
-  ↓
-Kubernetes Configuration Scan
-  ↓
-Kubernetes Deployment via GitLab Agent
-  ↓
-Kubernetes Rollout Verification
-  ↓
-Prometheus + Grafana Monitoring
-  ↓
-Wazuh SIEM Alert Detection
-  ↓
-High-Severity Alert Forwarding
-  ↓
-Shuffle SOAR Webhook
-  ↓
-HTTP Response Action
-  ↓
-GitHub Incident Issue Created Automatically
+```mermaid
+flowchart LR
+    A([Code Push]) --> B[🔍 Gitleaks\nSecrets Scan]
+    B --> C[🔬 Semgrep\nSAST]
+    C --> D[📦 Trivy\nImage Scan + SBOM]
+    D --> E[🚀 K8s Deploy\n+ Verify]
+    
+    B -->|secret found| F([❌ Blocked])
+    C -->|critical finding| F
+    D -->|Critical CVE| F
+    E --> G([✅ Live])
 ```
 
+Pipeline enforces policy — builds are **blocked**, not just reported.
+
 ---
 
-## 🧱 Homelab Environment
+## 🧪 Homelab
 
-My DevSecOps homelab is built on a segmented, multi-node infrastructure designed to simulate enterprise-style platform, network, and security operations.
-
-### Infrastructure Layer
-
-- Proxmox virtualization
-- Multiple mini PCs as physical lab nodes
-- pfSense physical firewall
-- MikroTik home router
-- WireGuard remote access
-- VLAN segmentation
-- Inter-VLAN routing
-- Firewall rules
-- SPAN / traffic mirroring design
-- Segmented SOC, target, and attacker networks
-
-### Network Segments
-
-```text
-SOC Network
-Target Network
-Attacker Network
-Management / Home Network
-WireGuard Remote Access Network
+```mermaid
+graph LR
+    subgraph SOC["VLAN 10 — SOC"]
+        GL[GitLab CE] --> GR[Runner]
+        GR --> K8[K8s Cluster]
+        WZ[Wazuh SIEM] --> SH[Shuffle SOAR]
+        SH --> GH[GitHub Issues]
+    end
+    subgraph Targets["VLAN 20 — Targets"]
+        DC[Windows AD]
+        DVWA[DVWA]
+    end
+    subgraph Attack["VLAN 30 — Attacker"]
+        KL[Kali Linux]
+    end
+    KL -->|simulated attacks| DC
+    DC -->|alerts| WZ
+    PF[pfSense] --> SOC & Targets & Attack
+    SO[Security Onion\nZeek] -->|SPAN port| PF
 ```
 
-### Platform Layer
-
-- kubeadm-based Kubernetes cluster
-- Kubernetes control plane node
-- Kubernetes worker nodes
-- Calico CNI
-- Local Path Provisioner
-- metrics-server
-- Helm
-- NodePort service exposure
-- GitLab Kubernetes Agent
-- Kubernetes deployment verification
-
-### DevSecOps Layer
-
-- GitLab CE
-- GitLab Runner
-- GitLab CI/CD pipelines
-- Docker image build
-- GitLab Container Registry
-- Trivy vulnerability scanning
-- Syft SBOM generation
-- Kubernetes config scanning
-- Automated deployment to Kubernetes
-- Pipeline artifact generation
-- Rollout verification
-
-### Monitoring and Observability Layer
-
-- Prometheus
-- Grafana
-- kube-prometheus-stack
-- metrics-server
-- Kubernetes pod and node visibility
-- Application availability verification
-
-### Security Monitoring and Automation Layer
-
-- Wazuh SIEM
-- Wazuh agents
-- Windows endpoint monitoring
-- Linux endpoint monitoring
-- Active Directory event monitoring
-- Shuffle SOAR
-- Shuffle webhook integration
-- HTTP automation action
-- GitHub Issues as incident ticketing
-- Severity-based alert forwarding
-- Automated incident ticket creation
-
-### Security Testing Layer
-
-- Kali Linux attacker machine
-- Ubuntu DVWA target
-- Windows Server Active Directory
-- Windows client endpoint
-- Security Onion
-- Docker host / container workloads
+4 Mini PC nodes · Proxmox · Cisco 2960 SPAN · WireGuard remote access
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠 Tech Stack
 
-| Area | Tools / Setup |
+**CI/CD & Security Gates**
+
+![GitLab CI](https://img.shields.io/badge/GitLab_CI-FC6D26?style=flat&logo=gitlab&logoColor=white)
+![Gitleaks](https://img.shields.io/badge/Gitleaks-F05033?style=flat&logo=git&logoColor=white)
+![Semgrep](https://img.shields.io/badge/Semgrep-31AF91?style=flat&logo=semgrep&logoColor=white)
+![Trivy](https://img.shields.io/badge/Trivy-1904DA?style=flat&logo=aqua&logoColor=white)
+
+**Kubernetes & Containers**
+
+![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=flat&logo=kubernetes&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white)
+![Helm](https://img.shields.io/badge/Helm-0F1689?style=flat&logo=helm&logoColor=white)
+![Prometheus](https://img.shields.io/badge/Prometheus-E6522C?style=flat&logo=prometheus&logoColor=white)
+![Grafana](https://img.shields.io/badge/Grafana-F46800?style=flat&logo=grafana&logoColor=white)
+
+**SIEM & Security Automation**
+
+![Wazuh](https://img.shields.io/badge/Wazuh-005571?style=flat&logo=elastic&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
+![Bash](https://img.shields.io/badge/Bash-4EAA25?style=flat&logo=gnubash&logoColor=white)
+
+**Network & Infrastructure**
+
+![pfSense](https://img.shields.io/badge/pfSense-212121?style=flat)
+![Proxmox](https://img.shields.io/badge/Proxmox-E57000?style=flat&logo=proxmox&logoColor=white)
+![Cisco](https://img.shields.io/badge/Cisco-1BA0D7?style=flat&logo=cisco&logoColor=white)
+
+---
+
+## 📁 Projects
+
+| Repo | What it does |
 |---|---|
-| Virtualization | Proxmox |
-| Network Security | pfSense, MikroTik, VLANs, firewall rules, WireGuard |
-| Network Monitoring | SPAN / traffic mirroring design |
-| Kubernetes | kubeadm, kubectl, Helm, Calico CNI, Local Path Provisioner |
-| Kubernetes Access | GitLab Kubernetes Agent |
-| CI/CD | GitLab CE, GitLab CI/CD, GitLab Runner |
-| Containers | Docker |
-| Container Registry | GitLab Container Registry |
-| Security Scanning | Trivy |
-| SBOM | Syft |
-| Kubernetes Config Security | Trivy config scan |
-| Monitoring & Observability | Prometheus, Grafana, kube-prometheus-stack, metrics-server |
-| SIEM | Wazuh |
-| SOAR | Shuffle |
-| Incident Tracking | GitHub Issues |
-| Security Lab | Kali Linux, DVWA, Windows Server AD, Windows client, Security Onion |
-| Operating Systems | Ubuntu Linux, Windows Server, Windows Client, Kali Linux |
-| Security Operations | Incident response, alert triage, vulnerability review, firewall change management |
+| 🔒 [devsecops-homelab](https://github.com/TengkuRizal/devsecops-homelab) | Full homelab — pipeline, K8s, SIEM, SOAR, network segmentation |
+| 🐍 [wazuh-triage](https://github.com/TengkuRizal/wazuh-triage) *(coming soon)* | Python automation — Wazuh REST API alert triage + structured reporting |
 
 ---
 
-## 📌 Portfolio Projects
+## 📈 Currently Adding
 
-### 1. DevSecOps CI/CD Pipeline
-
-Built a GitLab CI/CD pipeline that performs container build, image push, vulnerability scanning, SBOM generation, Kubernetes config scanning, deployment, and verification.
-
-Key capabilities:
-
-- Docker image build
-- Push to GitLab Container Registry
-- Trivy image vulnerability scan
-- Syft SBOM generation
-- Kubernetes config scanning
-- Kubernetes deployment
-- Rollout verification
-- Pipeline artifact generation
-
----
-
-### 2. Kubernetes Homelab Cluster
-
-Built and operated a kubeadm-based Kubernetes cluster in a homelab environment.
-
-Key capabilities:
-
-- Multi-node Kubernetes cluster
-- Calico CNI
-- Local Path Provisioner
-- metrics-server
-- Helm chart deployment
-- NodePort service exposure
-- GitLab Kubernetes Agent integration
-- Application deployment and verification
-
----
-
-### 3. Monitoring and Observability Stack
-
-Deployed monitoring components to provide visibility into Kubernetes workloads and cluster health.
-
-Key capabilities:
-
-- Prometheus monitoring
-- Grafana dashboard visibility
-- kube-prometheus-stack deployment
-- metrics-server setup
-- Pod and node monitoring
-- Application availability testing
-
----
-
-### 4. Wazuh SIEM Monitoring
-
-Implemented Wazuh SIEM to monitor Linux, Windows, and Active Directory lab systems.
-
-Key capabilities:
-
-- Wazuh manager setup
-- Wazuh agent monitoring
-- Linux log monitoring
-- Windows event monitoring
-- Active Directory security event monitoring
-- Alert generation
-- Severity-based forwarding
-
----
-
-### 5. Shuffle SOAR Automation
-
-Integrated Wazuh with Shuffle SOAR using webhooks.
-
-Key capabilities:
-
-- Wazuh to Shuffle webhook integration
-- Shuffle workflow creation
-- HTTP response action
-- Alert payload processing
-- Automated security workflow execution
-
----
-
-### 6. GitHub Incident Ticket Automation
-
-Automated incident ticket creation using GitHub Issues when high-severity Wazuh alerts are received.
-
-Key capabilities:
-
-- GitHub API integration
-- Fine-grained GitHub token usage
-- HTTP POST from Shuffle
-- Automated issue creation
-- Incident labels
-- Alert severity, rule ID, timestamp, and details included
-- Triage checklist support
-
----
-
-### 7. Network Security Lab
-
-Built a segmented network security lab using pfSense and MikroTik.
-
-Key capabilities:
-
-- pfSense firewall
-- MikroTik routing
-- VLAN segmentation
-- Inter-VLAN routing
-- Firewall policy testing
-- WireGuard remote access
-- SOC, target, and attacker network separation
-- SPAN / traffic mirroring planning
-
----
-
-### 8. Security Testing Lab
-
-Built a security testing environment to simulate attacker, target, and monitoring workflows.
-
-Key components:
-
-- Kali Linux attacker VM
-- Ubuntu DVWA target VM
-- Windows Server Active Directory
-- Windows client endpoint
-- Security Onion
-- Wazuh monitored endpoints
-
----
-
-### 9. Incident Response Workflow
-
-Built a workflow that turns security alerts into actionable incident tickets.
-
-Workflow:
-
-```text
-Wazuh Alert Level 10+
-  ↓
-Shuffle Webhook
-  ↓
-HTTP Action
-  ↓
-GitHub Issue
-  ↓
-Triage Checklist
-```
-
-Example incident data included:
-
-- Alert title
-- Severity
-- Rule ID
-- Timestamp
-- Alert details
-- Labels
-- Triage checklist
-
----
-
-## ✅ Completed Milestones
-
-- Built segmented Proxmox homelab infrastructure
-- Configured pfSense firewall
-- Configured MikroTik routing and WireGuard access
-- Designed SOC, target, and attacker lab segmentation
-- Built kubeadm Kubernetes cluster
-- Installed Calico CNI
-- Installed Local Path Provisioner
-- Installed metrics-server
-- Installed kube-prometheus-stack
-- Verified Grafana access
-- Integrated GitLab CI/CD with Kubernetes
-- Configured GitLab Runner
-- Configured GitLab Kubernetes Agent
-- Built Docker image pipeline
-- Pushed image to GitLab Container Registry
-- Generated SBOM using Syft
-- Scanned container image using Trivy
-- Scanned Kubernetes config
-- Deployed demo application to Kubernetes
-- Verified Kubernetes rollout
-- Verified NodePort application access
-- Installed and configured Wazuh SIEM
-- Monitored Linux and Windows endpoints
-- Integrated Wazuh alerts with Shuffle SOAR
-- Configured Wazuh alert level filtering
-- Built Shuffle webhook workflow
-- Configured Shuffle HTTP action
-- Integrated Shuffle with GitHub Issues API
-- Created automated GitHub incident tickets from Wazuh alerts
-- Validated end-to-end DevSecOps security automation workflow
-
----
-
-## 🧠 Troubleshooting Experience
-
-During the homelab build, I solved multiple real-world issues including:
-
-- GitLab Runner disk space exhaustion
-- Trivy Java DB download failure
-- Trivy cache cleanup
-- Docker cache cleanup
-- Pipeline artifact upload issues
-- GitLab CI YAML indentation and stage errors
-- Kubernetes rollout verification
-- Kubeconfig and certificate issues
-- Wazuh integration configuration
-- Shuffle webhook testing
-- HTTP API request failures
-- GitHub token permission issues
-- GitHub API status code troubleshooting
-- Wazuh alert severity filtering
-
----
-
-## 📈 What This Homelab Demonstrates
-
-This homelab demonstrates my ability to work across multiple DevSecOps domains:
-
-- Infrastructure operations
-- Network security
-- CI/CD automation
-- Kubernetes operations
-- Container security
-- Vulnerability scanning
-- SBOM generation
-- Monitoring and observability
-- SIEM monitoring
-- SOAR automation
-- Incident response automation
-- API integration
-- Troubleshooting and root cause analysis
-
----
-
-## 🔄 Current Improvement Roadmap
-
-Next improvements planned:
-
-- Add Terraform infrastructure provisioning
-- Add Ansible configuration automation
-- Add secrets scanning
-- Add policy-as-code using OPA / Conftest
-- Add Prometheus alerting rules
-- Add Grafana dashboards documentation
-- Add Security Onion traffic analysis documentation
-- Add automated email or chat notification
-- Add incident response runbooks
-- Add more GitHub documentation and architecture diagrams
+- [ ] Terraform + Checkov — IaC security scanning
+- [ ] Falco — Kubernetes runtime threat detection  
+- [ ] HashiCorp Vault — secrets lifecycle management
 
 ---
 
 ## 📫 Contact
 
-Open to mid-level opportunities in:
+Open to **DevSecOps** and **Security Engineering** roles in Malaysia.
 
-- DevOps Engineering
-- DevSecOps Engineering
-- Infrastructure Security
-- Platform Engineering
-- Security Automation
-- Cloud and Security Operations
-- SOC Automation
+[![Email](https://img.shields.io/badge/Email-EA4335?style=flat&logo=gmail&logoColor=white)](mailto:myserv@gmail.com)
