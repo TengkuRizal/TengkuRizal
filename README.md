@@ -1,4 +1,4 @@
-# Hi, I'm Tengku Rizal 👋
+Hi, I'm Tengku Rizal 👋
 
 I am an IT, Network Security, and Infrastructure Operations professional with hands-on experience in network security operations, firewall change management, vulnerability review, compliance support, incident management, infrastructure operations, service delivery, and stakeholder coordination.
 
@@ -23,7 +23,7 @@ I am targeting mid-level roles in:
 
 ---
 
-## 🔐 Current Focus
+🔐 Current Focus
 
 - DevSecOps automation
 - GitLab CI/CD
@@ -46,7 +46,7 @@ I am targeting mid-level roles in:
 
 ---
 
-## 🧪 Featured Homelab Project
+🧪 Featured Homelab Project
 
 ### DevSecOps Homelab: CI/CD + Kubernetes + Monitoring + SIEM + SOAR + Incident Automation
 
@@ -54,9 +54,8 @@ I built an end-to-end DevSecOps homelab that demonstrates secure software delive
 
 The homelab simulates a real-world DevSecOps workflow where code is built, scanned, deployed, monitored, alerted, and converted into an incident ticket automatically.
 
-### End-to-End Workflow
+End-to-End Workflow
 
-```text
 Developer Push
   ↓
 GitLab CI/CD
