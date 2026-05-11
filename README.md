@@ -89,6 +89,7 @@ Internet → Mikrotik (192.168.0.1) → pfSense → Cisco 2960 → VLANs
 | ✅ | Shuffle SOAR + wazuh_triage.py automated alert triage |
 | ✅ | Windows AD attack simulation detected end-to-end |
 | ✅ | 4-zone network segmentation (SOC, Target, Attacker, VPN) |
+| ✅ | Kubernetes cluster dengan Kyverno supply chain enforcement — 3 ClusterPolicies |
 
 ---
 
