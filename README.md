@@ -200,6 +200,8 @@ Welcome to nginx!
 
 The following screenshots provide visual evidence of CI/CD execution, Kubernetes workload validation, monitoring, alerting, and incident tracking.
 
+Some evidence is captured from GitHub because this public portfolio repository is hosted on GitHub, while the original DevSecOps pipeline design demonstrates GitLab CI/CD concepts and workflow patterns.
+
 | Screenshot | Description |
 |---|---|
 | ![GitHub Actions Passing](evidence/screenshots/github-actions-passing.png) | GitHub Actions workflow completed successfully |
