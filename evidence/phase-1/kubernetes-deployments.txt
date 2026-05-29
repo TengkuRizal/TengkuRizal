@@ -1,0 +1,16 @@
+NAMESPACE            NAME                                  READY   UP-TO-DATE   AVAILABLE   AGE
+demo                 demo-nginx                            2/2     2            2           39d
+falco                falco-falcosidekick                   2/2     2            2           16d
+ingress-nginx        ingress-nginx-controller              1/1     1            1           39d
+kube-system          calico-kube-controllers               1/1     1            1           40d
+kube-system          coredns                               2/2     2            2           40d
+kube-system          metrics-server                        1/1     1            1           40d
+kyverno              kyverno-admission-controller          1/1     1            1           26d
+kyverno              kyverno-background-controller         1/1     1            1           26d
+kyverno              kyverno-cleanup-controller            1/1     1            1           26d
+kyverno              kyverno-reports-controller            1/1     1            1           26d
+local-path-storage   local-path-provisioner                1/1     1            1           40d
+monitoring           monitoring-grafana                    1/1     1            1           40d
+monitoring           monitoring-kube-prometheus-operator   1/1     1            1           40d
+monitoring           monitoring-kube-state-metrics         1/1     1            1           40d
+vault                vault-agent-injector                  1/1     1            1           3d18h

@@ -1,0 +1,38 @@
+NAMESPACE            NAME                                                     READY   STATUS    RESTARTS         AGE     IP                NODE           NOMINATED NODE   READINESS GATES
+demo                 demo-nginx-5ff567466d-jb6bc                              1/1     Running   0                7d10h   192.168.230.5     k8s-worker-1   <none>           <none>
+demo                 demo-nginx-5ff567466d-klt5n                              1/1     Running   0                7d10h   192.168.140.46    k8s-worker-2   <none>           <none>
+falco                falco-6xnx8                                              2/2     Running   4 (11d ago)      16d     192.168.140.38    k8s-worker-2   <none>           <none>
+falco                falco-falcosidekick-56849f6996-5bl2s                     1/1     Running   1 (11d ago)      16d     192.168.230.58    k8s-worker-1   <none>           <none>
+falco                falco-falcosidekick-56849f6996-fn8zs                     1/1     Running   2 (11d ago)      16d     192.168.140.28    k8s-worker-2   <none>           <none>
+falco                falco-nds8v                                              2/2     Running   2 (11d ago)      16d     192.168.230.62    k8s-worker-1   <none>           <none>
+falco                falco-xfhqs                                              2/2     Running   0                16d     192.168.125.210   k8master       <none>           <none>
+ingress-nginx        ingress-nginx-controller-6695cd95bb-tdtt8                1/1     Running   0                11d     192.168.230.3     k8s-worker-1   <none>           <none>
+kube-system          calico-kube-controllers-66f8b6cf45-hszkf                 1/1     Running   4 (17d ago)      40d     192.168.125.205   k8master       <none>           <none>
+kube-system          calico-node-hf57x                                        1/1     Running   4 (17d ago)      40d     10.10.1.70        k8master       <none>           <none>
+kube-system          calico-node-lkb2f                                        1/1     Running   6 (11d ago)      40d     10.10.3.72        k8s-worker-2   <none>           <none>
+kube-system          calico-node-shsj4                                        1/1     Running   4 (11d ago)      40d     10.10.2.71        k8s-worker-1   <none>           <none>
+kube-system          coredns-76f75df574-5djnp                                 1/1     Running   4 (17d ago)      40d     192.168.125.207   k8master       <none>           <none>
+kube-system          coredns-76f75df574-7qqpt                                 1/1     Running   4 (17d ago)      40d     192.168.125.206   k8master       <none>           <none>
+kube-system          etcd-k8master                                            1/1     Running   7 (17d ago)      40d     10.10.1.70        k8master       <none>           <none>
+kube-system          kube-apiserver-k8master                                  1/1     Running   7 (17d ago)      40d     10.10.1.70        k8master       <none>           <none>
+kube-system          kube-controller-manager-k8master                         1/1     Running   8 (17d ago)      40d     10.10.1.70        k8master       <none>           <none>
+kube-system          kube-proxy-5vwk2                                         1/1     Running   4 (17d ago)      40d     10.10.1.70        k8master       <none>           <none>
+kube-system          kube-proxy-jfdfr                                         1/1     Running   6 (11d ago)      40d     10.10.3.72        k8s-worker-2   <none>           <none>
+kube-system          kube-proxy-v9g2b                                         1/1     Running   4 (11d ago)      40d     10.10.2.71        k8s-worker-1   <none>           <none>
+kube-system          kube-scheduler-k8master                                  1/1     Running   8 (17d ago)      40d     10.10.1.70        k8master       <none>           <none>
+kube-system          metrics-server-5c44d586d9-rngj2                          1/1     Running   0                11d     192.168.230.2     k8s-worker-1   <none>           <none>
+kyverno              kyverno-admission-controller-c877db669-vdj7l             1/1     Running   11 (4m24s ago)   14d     192.168.230.59    k8s-worker-1   <none>           <none>
+kyverno              kyverno-background-controller-85d8df679-nxnmh            1/1     Running   11 (4m28s ago)   14d     192.168.230.1     k8s-worker-1   <none>           <none>
+kyverno              kyverno-cleanup-controller-7685647757-d7sqp              1/1     Running   11 (4m28s ago)   14d     192.168.230.61    k8s-worker-1   <none>           <none>
+kyverno              kyverno-reports-controller-6d9c9b95df-mr4bq              1/1     Running   11 (4m28s ago)   14d     192.168.230.63    k8s-worker-1   <none>           <none>
+local-path-storage   local-path-provisioner-764fd965ff-7z44t                  1/1     Running   6 (11d ago)      40d     192.168.140.44    k8s-worker-2   <none>           <none>
+monitoring           alertmanager-monitoring-kube-prometheus-alertmanager-0   2/2     Running   0                5d17h   192.168.140.45    k8s-worker-2   <none>           <none>
+monitoring           monitoring-grafana-55c9b79b96-rbt7r                      3/3     Running   0                5d17h   192.168.230.15    k8s-worker-1   <none>           <none>
+monitoring           monitoring-kube-prometheus-operator-6d44c99759-tjnsd     1/1     Running   0                5d17h   192.168.230.12    k8s-worker-1   <none>           <none>
+monitoring           monitoring-kube-state-metrics-8554644d7b-scl6p           1/1     Running   4 (4m9s ago)     5d17h   192.168.140.47    k8s-worker-2   <none>           <none>
+monitoring           monitoring-prometheus-node-exporter-bt8kh                1/1     Running   0                5d17h   10.10.2.71        k8s-worker-1   <none>           <none>
+monitoring           monitoring-prometheus-node-exporter-nrsd4                1/1     Running   0                5d17h   10.10.1.70        k8master       <none>           <none>
+monitoring           monitoring-prometheus-node-exporter-p8k64                1/1     Running   0                5d17h   10.10.3.72        k8s-worker-2   <none>           <none>
+monitoring           prometheus-monitoring-kube-prometheus-prometheus-0       2/2     Running   0                5d10h   192.168.140.34    k8s-worker-2   <none>           <none>
+vault                vault-0                                                  1/1     Running   0                3d18h   192.168.140.27    k8s-worker-2   <none>           <none>
+vault                vault-agent-injector-8d6b668b4-clxdw                     1/1     Running   0                3d18h   192.168.140.29    k8s-worker-2   <none>           <none>

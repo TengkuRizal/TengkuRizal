@@ -1,0 +1,10 @@
+14035e6 Add interview talking points for DevOps SRE project
+1b3164d Update README.md
+ba673f5 Reorganize documentation structure and add evidence folder
+e34fbac Update README.md
+7df4b79 Add project summary for DevOps SRE portfolio
+dfbe61b Add evidence overview and screenshot index
+b3ebd00 Fix README screenshots with operational evidence
+5ae1273 Revise README with updated CI/CD screenshots
+1b539c7 Enhance README with detailed runbook descriptions
+61c1d7c Add runbooks index and operational overview

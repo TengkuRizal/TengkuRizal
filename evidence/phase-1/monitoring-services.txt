@@ -1,0 +1,9 @@
+NAME                                      TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                      AGE
+alertmanager-operated                     ClusterIP   None             <none>        9093/TCP,9094/TCP,9094/UDP   40d
+monitoring-grafana                        NodePort    10.99.25.183     <none>        80:30080/TCP                 40d
+monitoring-kube-prometheus-alertmanager   ClusterIP   10.104.75.108    <none>        9093/TCP,8080/TCP            40d
+monitoring-kube-prometheus-operator       ClusterIP   10.111.247.229   <none>        443/TCP                      40d
+monitoring-kube-prometheus-prometheus     ClusterIP   10.111.124.76    <none>        9090/TCP,8080/TCP            40d
+monitoring-kube-state-metrics             ClusterIP   10.97.186.106    <none>        8080/TCP                     40d
+monitoring-prometheus-node-exporter       ClusterIP   10.105.98.129    <none>        9100/TCP                     40d
+prometheus-operated                       ClusterIP   None             <none>        9090/TCP                     40d

@@ -1,0 +1,50 @@
+falco                4m          Warning   NodeNotReady              pod/falco-nds8v                                              Node is not ready
+vault                3m59s       Warning   NodeNotReady              pod/vault-agent-injector-8d6b668b4-clxdw                     Node is not ready
+local-path-storage   4m          Warning   NodeNotReady              pod/local-path-provisioner-764fd965ff-7z44t                  Node is not ready
+demo                 3m59s       Warning   NodeNotReady              pod/demo-nginx-5ff567466d-klt5n                              Node is not ready
+kube-system          3m59s       Warning   NodeNotReady              pod/kube-proxy-v9g2b                                         Node is not ready
+kube-system          3m59s       Warning   NodeNotReady              pod/kube-proxy-jfdfr                                         Node is not ready
+kube-system          3m59s       Warning   NodeNotReady              pod/calico-node-shsj4                                        Node is not ready
+monitoring           3m59s       Warning   NodeNotReady              pod/monitoring-kube-prometheus-operator-6d44c99759-tjnsd     Node is not ready
+vault                3m59s       Warning   NodeNotReady              pod/vault-0                                                  Node is not ready
+demo                 3m59s       Warning   NodeNotReady              pod/demo-nginx-5ff567466d-jb6bc                              Node is not ready
+kyverno              3m59s       Warning   NodeNotReady              pod/kyverno-background-controller-85d8df679-nxnmh            Node is not ready
+monitoring           4m9s        Normal    Pulled                    pod/monitoring-kube-state-metrics-8554644d7b-scl6p           Container image "registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.18.0" already present on machine
+monitoring           4m9s        Normal    Created                   pod/monitoring-kube-state-metrics-8554644d7b-scl6p           Created container: kube-state-metrics
+monitoring           4m4s        Warning   Unhealthy                 pod/monitoring-kube-state-metrics-8554644d7b-scl6p           Readiness probe failed: Get "http://192.168.140.47:8081/readyz": dial tcp 192.168.140.47:8081: connect: connection refused
+monitoring           4m4s        Warning   Unhealthy                 pod/monitoring-kube-state-metrics-8554644d7b-scl6p           Liveness probe failed: Get "http://192.168.140.47:8080/livez": dial tcp 192.168.140.47:8080: connect: connection refused
+monitoring           4m9s        Normal    Killing                   pod/monitoring-kube-state-metrics-8554644d7b-scl6p           Container kube-state-metrics failed liveness probe, will be restarted
+monitoring           4m9s        Warning   Unhealthy                 pod/monitoring-kube-state-metrics-8554644d7b-scl6p           Liveness probe failed: Get "http://192.168.140.47:8080/livez": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+monitoring           4m9s        Normal    Started                   pod/monitoring-kube-state-metrics-8554644d7b-scl6p           Started container kube-state-metrics
+kyverno              3m56s       Warning   Unhealthy                 pod/kyverno-cleanup-controller-7685647757-d7sqp              Startup probe failed: Get "https://192.168.230.61:9443/health/liveness": dial tcp 192.168.230.61:9443: connect: connection refused
+default              3m57s       Normal    NodeHasSufficientMemory   node/k8s-worker-1                                            Node k8s-worker-1 status is now: NodeHasSufficientMemory
+kyverno              4m27s       Normal    Started                   pod/kyverno-cleanup-controller-7685647757-d7sqp              Started container controller
+kyverno              3m52s       Warning   Unhealthy                 pod/kyverno-admission-controller-c877db669-vdj7l             Startup probe failed: Get "https://192.168.230.59:9443/health/liveness": dial tcp 192.168.230.59:9443: connect: connection refused
+kyverno              4m27s       Warning   Unhealthy                 pod/kyverno-cleanup-controller-7685647757-d7sqp              Liveness probe failed: Get "https://192.168.230.61:9443/health/liveness": dial tcp 192.168.230.61:9443: connect: connection refused
+kyverno              4m23s       Normal    Created                   pod/kyverno-admission-controller-c877db669-vdj7l             Created container: kyverno
+kyverno              4m27s       Normal    Pulled                    pod/kyverno-reports-controller-6d9c9b95df-mr4bq              Container image "reg.kyverno.io/kyverno/reports-controller:v1.18.0" already present on machine
+kyverno              4m27s       Normal    Created                   pod/kyverno-reports-controller-6d9c9b95df-mr4bq              Created container: controller
+kyverno              4m27s       Normal    Started                   pod/kyverno-reports-controller-6d9c9b95df-mr4bq              Started container controller
+kyverno              4m27s       Normal    Pulled                    pod/kyverno-background-controller-85d8df679-nxnmh            Container image "reg.kyverno.io/kyverno/background-controller:v1.18.0" already present on machine
+kyverno              4m23s       Normal    Pulled                    pod/kyverno-admission-controller-c877db669-vdj7l             Container image "reg.kyverno.io/kyverno/kyverno:v1.18.0" already present on machine
+default              3m57s       Normal    NodeHasNoDiskPressure     node/k8s-worker-1                                            Node k8s-worker-1 status is now: NodeHasNoDiskPressure
+default              3m57s       Normal    NodeHasSufficientPID      node/k8s-worker-1                                            Node k8s-worker-1 status is now: NodeHasSufficientPID
+default              3m57s       Normal    NodeReady                 node/k8s-worker-1                                            Node k8s-worker-1 status is now: NodeReady
+kyverno              4m24s       Warning   Unhealthy                 pod/kyverno-admission-controller-c877db669-vdj7l             Readiness probe failed: Get "https://192.168.230.59:9443/health/readiness": net/http: request canceled (Client.Timeout exceeded while awaiting headers)
+kyverno              4m27s       Normal    Created                   pod/kyverno-cleanup-controller-7685647757-d7sqp              Created container: controller
+kyverno              4m27s       Normal    Pulled                    pod/kyverno-cleanup-controller-7685647757-d7sqp              Container image "reg.kyverno.io/kyverno/cleanup-controller:v1.18.0" already present on machine
+kyverno              4m23s       Normal    Started                   pod/kyverno-admission-controller-c877db669-vdj7l             Started container kyverno
+kyverno              4m27s       Normal    Started                   pod/kyverno-background-controller-85d8df679-nxnmh            Started container controller
+kyverno              4m27s       Normal    Created                   pod/kyverno-background-controller-85d8df679-nxnmh            Created container: controller
+default              3m45s       Normal    NodeHasSufficientPID      node/k8s-worker-2                                            Node k8s-worker-2 status is now: NodeHasSufficientPID
+default              3m45s       Normal    NodeReady                 node/k8s-worker-2                                            Node k8s-worker-2 status is now: NodeReady
+default              3m45s       Normal    NodeHasNoDiskPressure     node/k8s-worker-2                                            Node k8s-worker-2 status is now: NodeHasNoDiskPressure
+default              3m45s       Normal    NodeHasSufficientMemory   node/k8s-worker-2                                            Node k8s-worker-2 status is now: NodeHasSufficientMemory
+monitoring           3m44s       Normal    TaintManagerEviction      pod/monitoring-kube-state-metrics-8554644d7b-scl6p           Cancelling deletion of Pod monitoring/monitoring-kube-state-metrics-8554644d7b-scl6p
+demo                 3m44s       Normal    TaintManagerEviction      pod/demo-nginx-5ff567466d-klt5n                              Cancelling deletion of Pod demo/demo-nginx-5ff567466d-klt5n
+monitoring           3m44s       Normal    TaintManagerEviction      pod/prometheus-monitoring-kube-prometheus-prometheus-0       Cancelling deletion of Pod monitoring/prometheus-monitoring-kube-prometheus-prometheus-0
+falco                3m44s       Normal    TaintManagerEviction      pod/falco-falcosidekick-56849f6996-fn8zs                     Cancelling deletion of Pod falco/falco-falcosidekick-56849f6996-fn8zs
+monitoring           3m44s       Normal    TaintManagerEviction      pod/alertmanager-monitoring-kube-prometheus-alertmanager-0   Cancelling deletion of Pod monitoring/alertmanager-monitoring-kube-prometheus-alertmanager-0
+vault                3m44s       Normal    TaintManagerEviction      pod/vault-0                                                  Cancelling deletion of Pod vault/vault-0
+local-path-storage   3m44s       Normal    TaintManagerEviction      pod/local-path-provisioner-764fd965ff-7z44t                  Cancelling deletion of Pod local-path-storage/local-path-provisioner-764fd965ff-7z44t
+vault                3m44s       Normal    TaintManagerEviction      pod/vault-agent-injector-8d6b668b4-clxdw                     Cancelling deletion of Pod vault/vault-agent-injector-8d6b668b4-clxdw
