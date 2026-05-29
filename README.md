@@ -199,13 +199,16 @@ Welcome to nginx!
 
 ## Runbooks
 
-Operational runbooks are included to document deployment, rollback, and troubleshooting procedures.
+Operational runbooks are included to document deployment, rollback, troubleshooting, and recovery procedures for the homelab DevSecOps environment.
+
+These runbooks demonstrate production-style DevOps/SRE practices such as deployment validation, rollback readiness, incident-style troubleshooting, security monitoring, evidence collection, and post-fix verification.
 
 | Runbook | Description |
 |---|---|
-| [Deployment Runbook](runbooks/deployment-runbook.md) | Steps to deploy and validate the workload |
-| [Rollback Runbook](runbooks/rollback-runbook.md) | Steps to rollback a failed deployment |
-| [Troubleshooting Guide](runbooks/troubleshooting.md) | Common pipeline and Kubernetes issues |
+| [Runbooks Overview](runbooks/README.md) | Index and explanation of all operational runbooks |
+| [Deployment Runbook](runbooks/deployment-runbook.md) | Steps to deploy, validate, monitor, and sign off workloads |
+| [Rollback Runbook](runbooks/rollback-runbook.md) | Controlled recovery process for failed or unstable deployments |
+| [Troubleshooting Guide](runbooks/troubleshooting.md) | Common GitLab, Kubernetes, Wazuh, Security Onion, monitoring, DNS, storage, and network troubleshooting procedures |
 
 ---
 
