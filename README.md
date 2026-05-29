@@ -142,15 +142,21 @@ gitlab-devsecops-pipeline/
 │   ├── deployment.yaml
 │   └── service.yaml
 ├── runbooks/
+│   ├── README.md
 │   ├── deployment-runbook.md
 │   ├── rollback-runbook.md
 │   └── troubleshooting.md
-├── screenshots/
-│   ├── gitlab-pipeline-success.png
-│   ├── pipeline-stages.png
-│   ├── kubernetes-pods-running.png
-│   └── deployment-rollout-success.png
+├── evidence/
+│   ├── README.md
+│   └── screenshots/
+│       ├── alertmanager-alert.png
+│       ├── github-actions-passing.png
+│       ├── github-incident-issue.png
+│       ├── kubernetes-nodes-ready.png
+│       ├── kubernetes-pods-running.png
+│       └── prometheus-alert-firing.png
 └── docs/
+    ├── project-summary.md
     └── interview-explanation.md
 ```
 
