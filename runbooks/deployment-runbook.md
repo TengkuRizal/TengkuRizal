@@ -281,7 +281,7 @@ Build the application container image before deployment.
 ### Example Command
 
 ```bash
-docker build -t <registry>/<image-name>:<tag> .
+docker build -t REGISTRY/IMAGE_NAME:IMAGE_TAG .
 ```
 
 ### Failure Action
@@ -309,7 +309,7 @@ Scan the container image for operating system and application dependency vulnera
 ### Example Command
 
 ```bash
-trivy image <registry>/<image-name>:<tag>
+trivy image REGISTRY/IMAGE_NAME:IMAGE_TAG
 ```
 
 ### Failure Condition
@@ -348,7 +348,7 @@ kubectl apply -f kubernetes/
 For namespace-specific deployment:
 
 ```bash
-kubectl apply -f kubernetes/ -n <namespace>
+kubectl apply -f kubernetes/ -n NAMESPACE
 ```
 
 ---
@@ -405,7 +405,7 @@ After the pipeline completes successfully, verify from `k8master`.
 ### Check Pods
 
 ```bash
-kubectl get pods -n <namespace> -o wide
+kubectl get pods -n NAMESPACE -o wide
 ```
 
 Expected result:
@@ -417,31 +417,31 @@ Pods should be Running and Ready.
 ### Check Deployment Rollout
 
 ```bash
-kubectl rollout status deployment/<deployment-name> -n <namespace> --timeout=300s
+kubectl rollout status deployment/DEPLOYMENT_NAME -n NAMESPACE --timeout=300s
 ```
 
 Expected result:
 
 ```text
-deployment "<deployment-name>" successfully rolled out
+deployment "DEPLOYMENT_NAME" successfully rolled out
 ```
 
 ### Check Deployment Details
 
 ```bash
-kubectl describe deployment <deployment-name> -n <namespace>
+kubectl describe deployment DEPLOYMENT_NAME -n NAMESPACE
 ```
 
 ### Check ReplicaSets
 
 ```bash
-kubectl get rs -n <namespace>
+kubectl get rs -n NAMESPACE
 ```
 
 ### Check Recent Events
 
 ```bash
-kubectl get events -n <namespace> --sort-by=.metadata.creationTimestamp | tail -20
+kubectl get events -n NAMESPACE --sort-by=.metadata.creationTimestamp | tail -20
 ```
 
 ---
@@ -451,13 +451,13 @@ kubectl get events -n <namespace> --sort-by=.metadata.creationTimestamp | tail -
 ### Check Service
 
 ```bash
-kubectl get svc -n <namespace>
+kubectl get svc -n NAMESPACE
 ```
 
 ### Check Endpoints
 
 ```bash
-kubectl get endpoints -n <namespace>
+kubectl get endpoints -n NAMESPACE
 ```
 
 Expected result:
@@ -471,7 +471,7 @@ Service should have active endpoints.
 Use this if there is no Ingress or external endpoint:
 
 ```bash
-kubectl port-forward svc/<service-name> 8080:80 -n <namespace>
+kubectl port-forward svc/SERVICE_NAME 8080:80 -n NAMESPACE
 ```
 
 Then test from another terminal:
@@ -483,7 +483,7 @@ curl -i http://localhost:8080
 ### Health Check
 
 ```bash
-curl -i http://<application-endpoint>/health
+curl -i http://APPLICATION_ENDPOINT/health
 ```
 
 Expected result:
@@ -499,13 +499,13 @@ HTTP/1.1 200 OK
 Check current logs:
 
 ```bash
-kubectl logs deployment/<deployment-name> -n <namespace> --tail=100
+kubectl logs deployment/DEPLOYMENT_NAME -n NAMESPACE --tail=100
 ```
 
 If a pod restarted, check previous logs:
 
 ```bash
-kubectl logs <pod-name> -n <namespace> --previous
+kubectl logs POD_NAME -n NAMESPACE --previous
 ```
 
 Look for:
@@ -570,12 +570,12 @@ No suspicious network activity caused by the deployment.
 
 | Check | Command / Location | Expected Result |
 |---|---|---|
-| Pods running | `kubectl get pods -n <namespace>` | All pods are Running |
-| Deployment rolled out | `kubectl rollout status deployment/<deployment-name> -n <namespace>` | Rollout successful |
-| No crash loops | `kubectl get pods -n <namespace>` | No CrashLoopBackOff |
-| Service has endpoints | `kubectl get endpoints -n <namespace>` | Endpoints are populated |
-| Application reachable | `curl -i http://<application-endpoint>/health` | HTTP 200 |
-| Logs clean | `kubectl logs deployment/<deployment-name> -n <namespace>` | No critical errors |
+| Pods running | `kubectl get pods -n NAMESPACE` | All pods are Running |
+| Deployment rolled out | `kubectl rollout status deployment/DEPLOYMENT_NAME -n NAMESPACE` | Rollout successful |
+| No crash loops | `kubectl get pods -n NAMESPACE` | No CrashLoopBackOff |
+| Service has endpoints | `kubectl get endpoints -n NAMESPACE` | Endpoints are populated |
+| Application reachable | `curl -i http://APPLICATION_ENDPOINT/health` | HTTP 200 |
+| Logs clean | `kubectl logs deployment/DEPLOYMENT_NAME -n NAMESPACE` | No critical errors |
 | Wazuh clean | Wazuh dashboard | No critical deployment-related alerts |
 | Security Onion clean | Security Onion dashboard | No suspicious traffic |
 
@@ -600,8 +600,8 @@ Common rollback triggers:
 Quick Kubernetes rollback:
 
 ```bash
-kubectl rollout undo deployment/<deployment-name> -n <namespace>
-kubectl rollout status deployment/<deployment-name> -n <namespace> --timeout=300s
+kubectl rollout undo deployment/DEPLOYMENT_NAME -n NAMESPACE
+kubectl rollout status deployment/DEPLOYMENT_NAME -n NAMESPACE --timeout=300s
 ```
 
 ---
@@ -613,7 +613,7 @@ kubectl rollout status deployment/<deployment-name> -n <namespace> --timeout=300
 Command:
 
 ```bash
-kubectl describe pod <pod-name> -n <namespace>
+kubectl describe pod POD_NAME -n NAMESPACE
 ```
 
 Common causes:
@@ -627,9 +627,9 @@ Common causes:
 Action:
 
 ```bash
-kubectl get secret -n <namespace>
-kubectl describe pod <pod-name> -n <namespace>
-kubectl get events -n <namespace> --sort-by=.metadata.creationTimestamp | tail -20
+kubectl get secret -n NAMESPACE
+kubectl describe pod POD_NAME -n NAMESPACE
+kubectl get events -n NAMESPACE --sort-by=.metadata.creationTimestamp | tail -20
 ```
 
 ---
@@ -639,8 +639,8 @@ kubectl get events -n <namespace> --sort-by=.metadata.creationTimestamp | tail -
 Command:
 
 ```bash
-kubectl logs <pod-name> -n <namespace>
-kubectl logs <pod-name> -n <namespace> --previous
+kubectl logs POD_NAME -n NAMESPACE
+kubectl logs POD_NAME -n NAMESPACE --previous
 ```
 
 Common causes:
@@ -655,9 +655,9 @@ Common causes:
 Action:
 
 ```bash
-kubectl describe pod <pod-name> -n <namespace>
-kubectl get configmap -n <namespace>
-kubectl get secret -n <namespace>
+kubectl describe pod POD_NAME -n NAMESPACE
+kubectl get configmap -n NAMESPACE
+kubectl get secret -n NAMESPACE
 ```
 
 ---
@@ -667,9 +667,9 @@ kubectl get secret -n <namespace>
 Commands:
 
 ```bash
-kubectl get svc -n <namespace>
-kubectl get endpoints -n <namespace>
-kubectl get pods -n <namespace> --show-labels
+kubectl get svc -n NAMESPACE
+kubectl get endpoints -n NAMESPACE
+kubectl get pods -n NAMESPACE --show-labels
 ```
 
 Common causes:
@@ -687,8 +687,8 @@ Common causes:
 Commands:
 
 ```bash
-kubectl describe deployment <deployment-name> -n <namespace>
-kubectl get events -n <namespace> --sort-by=.metadata.creationTimestamp | tail -20
+kubectl describe deployment DEPLOYMENT_NAME -n NAMESPACE
+kubectl get events -n NAMESPACE --sort-by=.metadata.creationTimestamp | tail -20
 ```
 
 Common causes:
@@ -750,10 +750,10 @@ Monitor the following after deployment:
 Useful commands:
 
 ```bash
-kubectl get pods -n <namespace> -o wide
-kubectl top pods -n <namespace>
+kubectl get pods -n NAMESPACE -o wide
+kubectl top pods -n NAMESPACE
 kubectl top nodes
-kubectl get events -n <namespace> --sort-by=.metadata.creationTimestamp | tail -20
+kubectl get events -n NAMESPACE --sort-by=.metadata.creationTimestamp | tail -20
 ```
 
 ---
@@ -763,9 +763,9 @@ kubectl get events -n <namespace> --sort-by=.metadata.creationTimestamp | tail -
 Perform basic security validation:
 
 ```bash
-kubectl get pods -n <namespace> -o yaml | grep -i privileged
-kubectl get svc -n <namespace>
-kubectl get secrets -n <namespace>
+kubectl get pods -n NAMESPACE -o yaml | grep -i privileged
+kubectl get svc -n NAMESPACE
+kubectl get secrets -n NAMESPACE
 ```
 
 Review:
@@ -860,8 +860,8 @@ kubectl get nodes -o wide
 kubectl get pods -A
 kubectl get deployment -A
 kubectl get svc -A
-kubectl rollout status deployment/<deployment-name> -n <namespace>
-curl -i http://<application-endpoint>/health
+kubectl rollout status deployment/DEPLOYMENT_NAME -n NAMESPACE
+curl -i http://APPLICATION_ENDPOINT/health
 git log --oneline --max-count=5
 ```
 
