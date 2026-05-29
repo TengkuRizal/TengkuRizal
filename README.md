@@ -180,20 +180,18 @@ Welcome to nginx!
 ```
 
 ---
-
 ## Screenshots
 
-| GitLab Pipeline Success |
-|---|
-| ![GitLab Pipeline Success](screenshots/gitlab-pipeline-success.png) |
+The following screenshots provide visual evidence of CI/CD execution, Kubernetes workload validation, monitoring, alerting, and incident tracking.
 
-| Pipeline Stages |
-|---|
-| ![Pipeline Stages](screenshots/pipeline-stages.png) |
-
-| Kubernetes Pods Running |
-|---|
-| ![Kubernetes Pods Running](screenshots/kubernetes-pods-running.png) |
+| Screenshot | Description |
+|---|---|
+| ![GitHub Actions Passing](evidence/screenshots/github-actions-passing.png) | GitHub Actions workflow completed successfully |
+| ![Kubernetes Nodes Ready](evidence/screenshots/kubernetes-nodes-ready.png) | Kubernetes nodes are healthy and in Ready state |
+| ![Kubernetes Pods Running](evidence/screenshots/kubernetes-pods-running.png) | Kubernetes workloads are running successfully |
+| ![Prometheus Alert Firing](evidence/screenshots/prometheus-alert-firing.png) | Prometheus alert rule firing as part of monitoring validation |
+| ![Alertmanager Alert](evidence/screenshots/alertmanager-alert.png) | Alertmanager receiving and displaying active alerts |
+| ![GitHub Incident Issue](evidence/screenshots/github-incident-issue.png) | Incident tracking documented using GitHub Issues |
 
 ---
 
