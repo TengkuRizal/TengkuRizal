@@ -156,6 +156,16 @@ gitlab-devsecops-pipeline/
 
 ---
 
+## Project Documentation
+
+| Document | Description |
+|---|---|
+| [Project Summary](docs/project-summary.md) | One-page DevOps/SRE portfolio summary covering tools, practices, evidence, runbooks, and interview talking points |
+| [Evidence Overview](evidence/README.md) | Explanation of screenshots and operational evidence included in this repository |
+| [Runbooks Overview](runbooks/README.md) | Index for deployment, rollback, and troubleshooting runbooks |
+
+---
+
 ## Deployment Validation
 
 The deployment can be validated using:
