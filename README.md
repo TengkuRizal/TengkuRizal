@@ -227,6 +227,7 @@ These runbooks demonstrate production-style DevOps/SRE practices such as deploym
 | [Deployment Runbook](runbooks/deployment-runbook.md) | Steps to deploy, validate, monitor, and sign off workloads |
 | [Rollback Runbook](runbooks/rollback-runbook.md) | Controlled recovery process for failed or unstable deployments |
 | [Troubleshooting Guide](runbooks/troubleshooting.md) | Common GitLab, Kubernetes, Wazuh, Security Onion, monitoring, DNS, storage, and network troubleshooting procedures |
+| [GitOps Deployment Runbook](runbooks/gitops-deployment-runbook.md) | ArgoCD-based GitOps deployment, sync validation, troubleshooting, and rollback procedure |
 
 ---
 
