@@ -28,6 +28,7 @@ These documents are written to demonstrate production-style DevOps/SRE operation
 | [Deployment Runbook](deployment-runbook.md) | Documents the end-to-end deployment process for workloads in the homelab DevSecOps environment | Use before, during, and after application or infrastructure deployment |
 | [Rollback Runbook](rollback-runbook.md) | Documents controlled recovery procedures when a deployment fails or causes instability | Use when a deployment causes service impact, failed health checks, or security concerns |
 | [Troubleshooting Runbook](troubleshooting.md) | Documents operational troubleshooting steps across GitLab, Kubernetes, Wazuh, Security Onion, monitoring, DNS, storage, and network issues | Use when diagnosing pipeline failures, workload issues, node issues, monitoring issues, or security visibility problems |
+| [GitOps Deployment Runbook](gitops-deployment-runbook.md) | Documents ArgoCD-based GitOps deployment, sync, validation, troubleshooting, and rollback process | Use when deploying or recovering workloads managed by ArgoCD |
 
 ---
 
