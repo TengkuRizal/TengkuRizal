@@ -56,6 +56,10 @@ demo-nginx Deployment and Service
 | [gitops-scale-test-argocd-app.txt](gitops-scale-test-argocd-app.txt) | Shows ArgoCD application status after GitOps scale test |
 | [gitops-scale-test-deployment.txt](gitops-scale-test-deployment.txt) | Shows `demo-nginx` deployment scaled to 3 replicas through GitOps |
 | [gitops-scale-test-pods.txt](gitops-scale-test-pods.txt) | Shows 3 running `demo-nginx` pods after GitOps reconciliation |
+| [gitops-self-heal-argocd-app.txt](gitops-self-heal-argocd-app.txt) | Shows ArgoCD application status after self-heal reconciliation |
+| [gitops-self-heal-application-describe.txt](gitops-self-heal-application-describe.txt) | Full ArgoCD application description after drift correction |
+| [gitops-self-heal-deployment.txt](gitops-self-heal-deployment.txt) | Shows `demo-nginx` restored to 3 replicas after ArgoCD self-heal |
+| [gitops-self-heal-pods.txt](gitops-self-heal-pods.txt) | Shows 3 running `demo-nginx` pods after self-heal reconciliation |
 
 ---
 
