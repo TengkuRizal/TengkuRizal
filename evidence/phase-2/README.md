@@ -53,6 +53,9 @@ demo-nginx Deployment and Service
 | [demo-nginx-pods.txt](demo-nginx-pods.txt) | Shows `demo-nginx` workload pods after GitOps sync |
 | [demo-nginx-service.txt](demo-nginx-service.txt) | Shows `demo-nginx` Kubernetes service |
 | [demo-nginx-deployment.txt](demo-nginx-deployment.txt) | Shows deployment readiness and availability |
+| [gitops-scale-test-argocd-app.txt](gitops-scale-test-argocd-app.txt) | Shows ArgoCD application status after GitOps scale test |
+| [gitops-scale-test-deployment.txt](gitops-scale-test-deployment.txt) | Shows `demo-nginx` deployment scaled to 3 replicas through GitOps |
+| [gitops-scale-test-pods.txt](gitops-scale-test-pods.txt) | Shows 3 running `demo-nginx` pods after GitOps reconciliation |
 
 ---
 
