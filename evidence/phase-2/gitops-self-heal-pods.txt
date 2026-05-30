@@ -1,0 +1,4 @@
+NAME                          READY   STATUS    RESTARTS   AGE     IP               NODE           NOMINATED NODE   READINESS GATES
+demo-nginx-5ff567466d-2g98z   1/1     Running   0          3m8s    192.168.140.63   k8s-worker-2   <none>           <none>
+demo-nginx-5ff567466d-jb6bc   1/1     Running   0          7d12h   192.168.230.5    k8s-worker-1   <none>           <none>
+demo-nginx-5ff567466d-l477v   1/1     Running   0          3m8s    192.168.140.36   k8s-worker-2   <none>           <none>

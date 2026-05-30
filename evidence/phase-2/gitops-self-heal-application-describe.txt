@@ -1,0 +1,165 @@
+Name:         demo-nginx
+Namespace:    argocd
+Labels:       <none>
+Annotations:  <none>
+API Version:  argoproj.io/v1alpha1
+Kind:         Application
+Metadata:
+  Creation Timestamp:  2026-05-30T00:23:40Z
+  Generation:          65
+  Resource Version:    10381873
+  UID:                 fbae41f4-f544-4dae-9b01-614ffcde880d
+Spec:
+  Destination:
+    Namespace:  demo
+    Server:     https://kubernetes.default.svc
+  Project:      default
+  Source:
+    Path:             kubernetes
+    Repo URL:         https://github.com/TengkuRizal/TengkuRizal.git
+    Target Revision:  main
+  Sync Policy:
+    Automated:
+      Prune:      false
+      Self Heal:  true
+    Sync Options:
+      CreateNamespace=true
+Status:
+  Controller Namespace:  argocd
+  Health:
+    Last Transition Time:  2026-05-30T02:28:12Z
+    Status:                Healthy
+  History:
+    Deploy Started At:  2026-05-30T00:27:01Z
+    Deployed At:        2026-05-30T00:27:02Z
+    Id:                 0
+    Initiated By:
+      Automated:  true
+    Revision:     1220992cd82bac59ecbe31587025ac0d792af0da
+    Source:
+      Path:             kubernetes
+      Repo URL:         https://github.com/TengkuRizal/TengkuRizal.git
+      Target Revision:  main
+    Deploy Started At:  2026-05-30T02:20:41Z
+    Deployed At:        2026-05-30T02:20:41Z
+    Id:                 1
+    Initiated By:
+      Automated:  true
+    Revision:     6fea01975e68276819eddf69a41d7d264ff08d26
+    Source:
+      Path:             kubernetes
+      Repo URL:         https://github.com/TengkuRizal/TengkuRizal.git
+      Target Revision:  main
+    Deploy Started At:  2026-05-30T02:28:10Z
+    Deployed At:        2026-05-30T02:28:10Z
+    Id:                 2
+    Initiated By:
+      Automated:  true
+    Revision:     d4e4a043b3b3592e5ebe878a7cbe8661de9bedd3
+    Source:
+      Path:             kubernetes
+      Repo URL:         https://github.com/TengkuRizal/TengkuRizal.git
+      Target Revision:  main
+  Operation State:
+    Finished At:  2026-05-30T02:28:10Z
+    Message:      successfully synced (all tasks run)
+    Operation:
+      Initiated By:
+        Automated:  true
+      Retry:
+        Limit:  5
+      Sync:
+        Revision:  d4e4a043b3b3592e5ebe878a7cbe8661de9bedd3
+        Source:
+          Path:             kubernetes
+          Repo URL:         https://github.com/TengkuRizal/TengkuRizal.git
+          Target Revision:  main
+        Sync Options:
+          CreateNamespace=true
+    Phase:       Succeeded
+    Started At:  2026-05-30T02:28:10Z
+    Sync Result:
+      Resources:
+        Group:       
+        Hook Phase:  Running
+        Kind:        Namespace
+        Message:     namespace/demo unchanged
+        Name:        demo
+        Namespace:   demo
+        Status:      Synced
+        Sync Phase:  Sync
+        Version:     v1
+        Group:       
+        Hook Phase:  Running
+        Kind:        Service
+        Message:     service/demo-nginx unchanged
+        Name:        demo-nginx
+        Namespace:   demo
+        Status:      Synced
+        Sync Phase:  Sync
+        Version:     v1
+        Group:       apps
+        Hook Phase:  Running
+        Images:
+          10.10.1.101:5050/kujal/demo-nginx/demo-nginx:v1.0.0
+        Kind:        Deployment
+        Message:     deployment.apps/demo-nginx configured
+        Name:        demo-nginx
+        Namespace:   demo
+        Status:      Synced
+        Sync Phase:  Sync
+        Version:     v1
+      Revision:      d4e4a043b3b3592e5ebe878a7cbe8661de9bedd3
+      Source:
+        Path:              kubernetes
+        Repo URL:          https://github.com/TengkuRizal/TengkuRizal.git
+        Target Revision:   main
+  Reconciled At:           2026-05-30T02:28:10Z
+  Resource Health Source:  appTree
+  Resources:
+    Kind:       Namespace
+    Name:       demo
+    Status:     Synced
+    Version:    v1
+    Kind:       Service
+    Name:       demo-nginx
+    Namespace:  demo
+    Status:     Synced
+    Version:    v1
+    Group:      apps
+    Kind:       Deployment
+    Name:       demo-nginx
+    Namespace:  demo
+    Status:     Synced
+    Version:    v1
+  Source Hydrator:
+  Source Type:  Directory
+  Summary:
+    Images:
+      10.10.1.101:5050/kujal/demo-nginx/demo-nginx:v1.0.0
+  Sync:
+    Compared To:
+      Destination:
+        Namespace:  demo
+        Server:     https://kubernetes.default.svc
+      Source:
+        Path:             kubernetes
+        Repo URL:         https://github.com/TengkuRizal/TengkuRizal.git
+        Target Revision:  main
+    Revision:             d4e4a043b3b3592e5ebe878a7cbe8661de9bedd3
+    Status:               Synced
+Events:
+  Type    Reason              Age   From                           Message
+  ----    ------              ----  ----                           -------
+  Normal  OperationStarted    10m   argocd-application-controller  Initiated automated sync to '6fea01975e68276819eddf69a41d7d264ff08d26'
+  Normal  ResourceUpdated     10m   argocd-application-controller  Updated sync status: Synced -> OutOfSync
+  Normal  ResourceUpdated     10m   argocd-application-controller  Updated sync status: OutOfSync -> Synced
+  Normal  OperationCompleted  10m   argocd-application-controller  Sync operation to 6fea01975e68276819eddf69a41d7d264ff08d26 succeeded
+  Normal  ResourceUpdated     10m   argocd-application-controller  Updated health status: Healthy -> Progressing
+  Normal  ResourceUpdated     10m   argocd-application-controller  Updated health status: Progressing -> Healthy
+  Normal  OperationStarted    3m8s  argocd-application-controller  Initiated automated sync to 'd4e4a043b3b3592e5ebe878a7cbe8661de9bedd3'
+  Normal  ResourceUpdated     3m8s  argocd-application-controller  Updated sync status: Synced -> OutOfSync
+  Normal  OperationCompleted  3m8s  argocd-application-controller  Sync operation to d4e4a043b3b3592e5ebe878a7cbe8661de9bedd3 succeeded
+  Normal  ResourceUpdated     3m8s  argocd-application-controller  Updated sync status: OutOfSync -> Synced
+  Normal  ResourceUpdated     3m8s  argocd-application-controller  Updated health status: Healthy -> Progressing
+  Normal  ResourceUpdated     3m6s  argocd-application-controller  Updated health status: Progressing -> Healthy
