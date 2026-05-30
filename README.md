@@ -212,6 +212,7 @@ Some evidence is captured from GitHub because this public portfolio repository i
 | ![Prometheus Alert Firing](evidence/screenshots/prometheus-alert-firing.png) | Prometheus alert rule firing as part of monitoring validation |
 | ![Alertmanager Alert](evidence/screenshots/alertmanager-alert.png) | Alertmanager receiving and displaying active alerts |
 | ![GitHub Incident Issue](evidence/screenshots/github-incident-issue.png) | Incident tracking documented using GitHub Issues |
+| ![ArgoCD Demo NGINX Synced](evidence/screenshots/argocd-demo-nginx-synced.png) | ArgoCD shows `demo-nginx` application as Synced and Healthy |
 
 ---
 
