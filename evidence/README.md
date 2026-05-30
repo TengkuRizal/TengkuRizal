@@ -36,6 +36,16 @@ evidence/
 
 ---
 
+## Phase 1 Baseline Evidence
+
+Phase 1 evidence captures the current healthy baseline of the homelab DevSecOps/SRE platform.
+
+| Evidence Folder | Description |
+|---|---|
+| [Phase 1 Baseline Validation](phase-1/README.md) | Kubernetes, monitoring, Prometheus, Alertmanager, and Git baseline validation evidence |
+
+---
+
 ## Screenshot Index
 
 | Evidence | Description | What It Demonstrates |
