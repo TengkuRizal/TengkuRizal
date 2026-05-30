@@ -26,18 +26,18 @@ Validate the current operational baseline:
 
 | File | Purpose |
 |---|---|
-| `kubernetes-nodes.txt` | Shows Kubernetes node readiness and version details |
-| `kubernetes-pods.txt` | Shows all running pods across namespaces |
-| `kubernetes-services.txt` | Shows Kubernetes services and exposed ports |
-| `kubernetes-deployments.txt` | Shows deployment readiness and availability |
-| `kubernetes-events.txt` | Captures recent Kubernetes events |
-| `monitoring-pods.txt` | Shows monitoring stack pod status |
-| `monitoring-services.txt` | Shows monitoring services such as Grafana, Prometheus, and Alertmanager |
-| `prometheus-rules.txt` | Shows Prometheus alert rules configured in the cluster |
-| `prometheus.txt` | Shows Prometheus custom resources |
-| `alertmanager.txt` | Shows Alertmanager custom resources |
-| `git-status.txt` | Shows Git working tree state at evidence capture time |
-| `git-history.txt` | Shows recent Git commit history |
+| [kubernetes-nodes.txt](kubernetes-nodes.txt) | Shows Kubernetes node readiness and version details |
+| [kubernetes-pods.txt](kubernetes-pods.txt) | Shows all running pods across namespaces |
+| [kubernetes-services.txt](kubernetes-services.txt) | Shows Kubernetes services and exposed ports |
+| [kubernetes-deployments.txt](kubernetes-deployments.txt) | Shows deployment readiness and availability |
+| [kubernetes-events.txt](kubernetes-events.txt) | Captures recent Kubernetes events |
+| [monitoring-pods.txt](monitoring-pods.txt) | Shows monitoring stack pod status |
+| [monitoring-services.txt](monitoring-services.txt) | Shows monitoring services such as Grafana, Prometheus, and Alertmanager |
+| [prometheus-rules.txt](prometheus-rules.txt) | Shows Prometheus alert rules configured in the cluster |
+| [prometheus.txt](prometheus.txt) | Shows Prometheus custom resources |
+| [alertmanager.txt](alertmanager.txt) | Shows Alertmanager custom resources |
+| [git-status.txt](git-status.txt) | Shows Git working tree state at evidence capture time |
+| [git-history.txt](git-history.txt) | Shows recent Git commit history |
 
 ---
 
