@@ -10,33 +10,31 @@ The goal is to help explain not only what was built, but also why it was built, 
 
 ## 60-Second Project Pitch
 
-I built this DevSecOps CI/CD pipeline project to demonstrate secure and reliable application delivery into Kubernetes.
+I built this DevSecOps CI/CD and GitOps project to demonstrate secure and reliable application delivery into Kubernetes.
 
 The project simulates a production-style delivery workflow where code changes go through validation, secret scanning, static application security testing, Kubernetes configuration scanning, container image build, SBOM generation, image vulnerability scanning, deployment to Kubernetes, and rollout verification.
 
-Beyond the pipeline itself, I added operational evidence, screenshots, deployment runbooks, rollback procedures, and troubleshooting documentation. This shows that the environment is not only built, but also operated with DevOps/SRE discipline.
+I then extended the project with ArgoCD GitOps. Kubernetes manifests are stored in Git, ArgoCD syncs the desired state to the cluster, and I validated both GitOps scale reconciliation and self-healing drift correction.
 
-The project demonstrates CI/CD automation, Kubernetes operations, security shift-left practices, monitoring, alerting, incident tracking, evidence collection, and recovery readiness.
+Beyond the pipeline itself, I added operational evidence, screenshots, deployment runbooks, rollback procedures, GitOps runbook, and troubleshooting documentation.
 
 ---
 
 ## 2-Minute Project Explanation
 
-This project is a hands-on DevSecOps pipeline and operations portfolio.
+This project is a hands-on DevSecOps, GitOps, and SRE operations portfolio.
 
-The pipeline starts when a developer pushes code. The CI/CD workflow validates Kubernetes manifests, checks for secrets using Gitleaks, performs static analysis using Semgrep, scans Kubernetes configuration using Trivy, builds a Docker image, generates an SBOM using Syft, scans the image using Trivy, deploys the workload to Kubernetes, and verifies the rollout using `kubectl rollout status`.
+The CI/CD side validates Kubernetes manifests, checks for secrets using Gitleaks, performs static analysis using Semgrep, scans Kubernetes configuration using Trivy, builds a Docker image, generates an SBOM using Syft, scans the image using Trivy, deploys the workload to Kubernetes, and verifies the rollout using `kubectl rollout status`.
 
-The operational side of the project includes screenshots showing successful pipeline execution, Kubernetes nodes and pods running, Prometheus alert firing, Alertmanager receiving alerts, and GitHub Issues being used for incident tracking.
+The GitOps side uses ArgoCD. I added Kubernetes manifests under `kubernetes/` and an ArgoCD Application under `argocd/applications/demo-nginx-app.yaml`. ArgoCD watches the GitHub repository and manages the `demo-nginx` workload in the `demo` namespace.
 
-I also created production-style runbooks for deployment, rollback, and troubleshooting. These runbooks cover real operational scenarios such as failed rollouts, `ImagePullBackOff`, `CrashLoopBackOff`, KUBECONFIG issues, monitoring failures, Wazuh/Security Onion validation, DNS issues, node pressure, disk pressure, and rollback decision-making.
+I validated GitOps with two practical tests. First, I changed the replica count in Git from 2 to 3 and ArgoCD reconciled the deployment to 3 available replicas. Second, I manually created drift with `kubectl scale` by scaling the deployment down to 1 replica. ArgoCD detected `OutOfSync` and self-healed the deployment back to the Git-defined desired state of 3 replicas.
 
-This project is designed to show that I understand the full lifecycle: build, scan, deploy, verify, monitor, troubleshoot, rollback, document, and improve.
+This project demonstrates the full lifecycle: build, scan, deploy, sync, verify, monitor, troubleshoot, self-heal, rollback, document, and improve.
 
 ---
 
 ## Architecture Explanation
-
-The project follows this high-level flow:
 
 ```text
 Developer Push
@@ -53,16 +51,14 @@ Container Image Vulnerability Scan
       ↓
 Kubernetes Deployment
       ↓
-Rollout Verification
+ArgoCD GitOps Reconciliation
       ↓
 Monitoring and Alerting
       ↓
 Incident Tracking and Runbooks
 ```
 
-The architecture demonstrates a secure software delivery model where security checks happen before deployment, and operational validation happens after deployment.
-
-The important point is that the pipeline does not stop at deployment. It also includes verification, monitoring evidence, alerting evidence, incident tracking, and documented recovery procedures.
+The important point is that the project does not stop at deployment. It includes verification, monitoring evidence, alerting evidence, incident tracking, GitOps reconciliation, self-healing validation, and documented recovery procedures.
 
 ---
 
@@ -70,20 +66,7 @@ The important point is that the pipeline does not stop at deployment. It also in
 
 I built this project because DevOps and SRE roles require more than tool installation.
 
-A strong DevOps/SRE engineer should be able to:
-
-- Automate delivery
-- Enforce security checks
-- Operate Kubernetes workloads
-- Validate deployment health
-- Monitor service behavior
-- Respond to incidents
-- Roll back safely
-- Capture operational evidence
-- Maintain runbooks
-- Improve reliability over time
-
-This project was designed to demonstrate those capabilities in a practical homelab environment.
+A strong DevOps/SRE engineer should be able to automate delivery, enforce security checks, operate Kubernetes workloads, implement GitOps deployment control, validate deployment health, monitor service behavior, respond to incidents, roll back safely, detect and correct drift, capture operational evidence, maintain runbooks, and improve reliability over time.
 
 ---
 
@@ -91,18 +74,9 @@ This project was designed to demonstrate those capabilities in a practical homel
 
 Traditional CI/CD pipelines often focus on build and deployment only.
 
-That creates several risks:
+That creates risks such as committed secrets, vulnerable dependencies, insecure Kubernetes manifests, container images with known CVEs, deployments without health verification, lack of rollback readiness, manual cluster drift, undocumented incidents, and unvalidated monitoring.
 
-- Secrets may be committed into repositories
-- Vulnerable dependencies may enter the build
-- Kubernetes manifests may contain insecure configurations
-- Container images may include known CVEs
-- Deployment may complete without health verification
-- Teams may lack rollback readiness
-- Incidents may not be documented properly
-- Monitoring and alerting may not be validated
-
-This project solves those problems by integrating security and operational checks into the delivery workflow.
+This project solves those problems by integrating security checks, GitOps reconciliation, monitoring, evidence, and runbooks into the delivery workflow.
 
 ---
 
@@ -117,52 +91,30 @@ This project solves those problems by integrating security and operational check
 | Build | Docker | I build the application container image in a repeatable way |
 | SBOM | Syft | I generate a Software Bill of Materials so dependencies are visible |
 | Image Scan | Trivy | I scan the final image for known vulnerabilities |
-| Deploy | kubectl | I deploy the workload to Kubernetes using a controlled pipeline |
-| Verify | kubectl rollout | I verify that the deployment actually becomes healthy |
+| Deploy | kubectl / ArgoCD | I deploy and reconcile the workload using Kubernetes and GitOps workflows |
+| Verify | kubectl rollout / ArgoCD | I verify that the deployment becomes healthy and synced |
 
 ---
 
 ## Security Controls Explanation
 
-This project applies shift-left security by moving security checks earlier into the CI/CD lifecycle.
-
 ### Secret Detection
-
-Gitleaks is used to detect exposed secrets before deployment.
-
-Interview explanation:
 
 > I use secret scanning because leaked credentials are one of the fastest ways to compromise an environment. If Gitleaks detects a real secret, the correct action is not only to remove it from code, but also rotate the credential and review Git history.
 
 ### Static Application Security Testing
 
-Semgrep is used to detect insecure code patterns.
-
-Interview explanation:
-
 > I use SAST to catch risky code patterns before runtime. This does not replace manual review, but it improves early detection and creates a security gate in the pipeline.
 
 ### Kubernetes Configuration Scanning
-
-Trivy Config is used to identify insecure Kubernetes configuration.
-
-Interview explanation:
 
 > Kubernetes misconfiguration is a common production risk. I scan manifests to catch issues like privileged containers, missing resource limits, running as root, and weak security contexts before they are applied to the cluster.
 
 ### Container Image Vulnerability Scanning
 
-Trivy Image Scan is used to detect CVEs in container images.
-
-Interview explanation:
-
 > Image scanning helps identify vulnerable OS packages and application dependencies. For critical vulnerabilities, the image should be patched or risk-accepted through a formal process before deployment.
 
 ### SBOM Generation
-
-Syft is used to generate an SBOM.
-
-Interview explanation:
 
 > SBOM helps provide dependency visibility. It is useful for supply chain security because it helps teams understand what components are inside the image.
 
@@ -170,15 +122,7 @@ Interview explanation:
 
 ## Kubernetes Deployment Explanation
 
-The Kubernetes deployment is validated through:
-
-- Namespace checks
-- Pod status checks
-- Service checks
-- Endpoint checks
-- Rollout status verification
-- Log review
-- Health check testing
+The Kubernetes deployment is validated through namespace checks, pod status checks, service checks, endpoint checks, rollout status verification, log review, and health check testing.
 
 Example validation commands:
 
@@ -196,54 +140,82 @@ Interview explanation:
 
 ---
 
+## Phase 2 GitOps Talking Points
+
+### What I Implemented
+
+In Phase 2, I implemented ArgoCD to introduce GitOps-based deployment control into the homelab Kubernetes environment.
+
+I created Kubernetes manifests under the `kubernetes/` directory and created an ArgoCD Application manifest under `argocd/applications/demo-nginx-app.yaml`.
+
+ArgoCD now watches the GitHub repository and reconciles the `demo-nginx` workload in the `demo` namespace.
+
+### How I Validated It
+
+I validated Phase 2 using two practical tests.
+
+#### Test 1: GitOps Scale Test
+
+I changed the desired replica count in Git from 2 replicas to 3 replicas.
+
+After committing and pushing the change, ArgoCD synchronized the desired state and Kubernetes updated the deployment to 3 available replicas.
+
+Evidence:
+
+```text
+demo-nginx   3/3   3   3
+```
+
+This proves that ArgoCD can reconcile Git desired state into the live Kubernetes cluster.
+
+#### Test 2: Self-Heal / Drift Correction Test
+
+I manually created drift using `kubectl scale` by scaling the live deployment down from 3 replicas to 1 replica.
+
+ArgoCD detected the live state was different from Git desired state and marked the application as `OutOfSync`.
+
+Because self-heal was enabled, ArgoCD reconciled the workload back to the Git-defined desired state of 3 replicas.
+
+Final state:
+
+```text
+demo-nginx   Synced   Healthy
+demo-nginx   3/3
+```
+
+This proves GitOps drift detection and self-healing reconciliation.
+
+### Strong Interview Explanation
+
+> I implemented ArgoCD GitOps in my homelab and onboarded `demo-nginx` as an ArgoCD Application. The Kubernetes manifests are stored in GitHub, and ArgoCD continuously compares the Git desired state with the live cluster state. I validated the workflow by changing replicas through Git and observing ArgoCD sync the deployment to 3 replicas. Then I manually created drift using `kubectl scale`, and ArgoCD self-healed the deployment back to the Git-defined state. This demonstrates GitOps deployment control, auditability, drift detection, and desired-state reconciliation.
+
+### Why This Matters
+
+GitOps provides Git-based audit trail, desired-state control, drift detection, safer rollback through Git history, separation of CI and CD, better deployment visibility, and self-healing reconciliation.
+
+---
+
 ## Monitoring and Alerting Explanation
 
-The project includes evidence for:
-
-- Prometheus alert firing
-- Alertmanager receiving alerts
-- Kubernetes nodes ready
-- Kubernetes pods running
-- Incident tracking through GitHub Issues
+The project includes evidence for Prometheus alert firing, Alertmanager receiving alerts, Kubernetes nodes ready, Kubernetes pods running, ArgoCD application Synced and Healthy, and incident tracking through GitHub Issues.
 
 Interview explanation:
 
-> Monitoring and alerting are important because deployment success is not only about pushing code. I need to know whether the system remains healthy after release. Prometheus provides metrics and alert rules, Alertmanager handles alert visibility and routing, and incident tracking ensures operational issues are documented.
+> Monitoring and alerting are important because deployment success is not only about pushing code. I need to know whether the system remains healthy after release. Prometheus provides metrics and alert rules, Alertmanager handles alert visibility and routing, ArgoCD provides GitOps sync and health visibility, and incident tracking ensures operational issues are documented.
 
 ---
 
 ## Incident Management Explanation
 
-The project includes GitHub Issue evidence for incident tracking.
-
-Interview explanation:
-
 > I use issue-based incident tracking to document the symptom, impact, detection method, actions taken, resolution, and follow-up. This helps create an audit trail and supports post-incident learning.
 
-A good incident record should include:
-
-- What happened
-- When it happened
-- What was impacted
-- How it was detected
-- What action was taken
-- Whether rollback was required
-- What evidence was captured
-- What preventive action is needed
+A good incident record should include what happened, when it happened, what was impacted, how it was detected, what action was taken, whether rollback was required, what evidence was captured, and what preventive action is needed.
 
 ---
 
 ## Rollback Explanation
 
-The rollback runbook covers multiple rollback methods:
-
-- Kubernetes rollout undo
-- Rollback to a specific Kubernetes revision
-- Git revert rollback
-- Image tag rollback
-- ConfigMap or Secret rollback
-- Terraform rollback awareness
-- Database rollback caution
+The rollback runbook covers Kubernetes rollout undo, rollback to a specific Kubernetes revision, Git revert rollback, image tag rollback, ConfigMap or Secret rollback, Terraform rollback awareness, database rollback caution, and GitOps rollback through Git history.
 
 Interview explanation:
 
@@ -251,27 +223,13 @@ Interview explanation:
 
 Important point:
 
-> I prefer `git revert` over force-push because it preserves audit history and is safer in a team environment.
+> I prefer `git revert` over force-push because it preserves audit history and is safer in a team environment. In GitOps, rollback should generally be done by reverting Git desired state and letting ArgoCD reconcile the cluster.
 
 ---
 
 ## Troubleshooting Explanation
 
-The troubleshooting runbook covers issues across:
-
-- Git and GitHub
-- CI/CD pipelines
-- GitLab Runner
-- KUBECONFIG
-- Kubernetes pods
-- Kubernetes services
-- Kubernetes nodes
-- DNS and networking
-- Prometheus and Grafana
-- Wazuh
-- Security Onion
-- Storage and disk pressure
-- Performance issues
+The troubleshooting runbook covers Git and GitHub, CI/CD pipelines, GitLab Runner, KUBECONFIG, Kubernetes pods, Kubernetes services, Kubernetes nodes, DNS/networking, Prometheus/Grafana, Wazuh, Security Onion, ArgoCD, storage, disk pressure, and performance issues.
 
 Interview explanation:
 
@@ -279,128 +237,59 @@ Interview explanation:
 
 ---
 
-## Example Troubleshooting Scenario: ImagePullBackOff
+## Example Troubleshooting Scenario: ArgoCD Application Unknown
 
 Question:
 
-> What would you do if a Kubernetes pod is stuck in ImagePullBackOff?
+> What would you do if an ArgoCD Application shows Unknown?
 
 Answer:
 
-I would start by describing the pod:
+I would inspect the application condition first:
 
 ```bash
-kubectl describe pod POD_NAME -n NAMESPACE
+kubectl describe application demo-nginx -n argocd
 ```
 
-Then I would check the image reference:
+Then I would check repo-server and application-controller logs:
 
 ```bash
-kubectl get pod POD_NAME -n NAMESPACE -o jsonpath='{.spec.containers[*].image}'
+kubectl logs -n argocd deployment/argocd-repo-server --tail=100
+kubectl logs -n argocd statefulset/argocd-application-controller --tail=100
 ```
 
-Common causes include wrong image tag, image not pushed, registry authentication issue, missing imagePullSecret, registry DNS issue, or node connectivity problem.
+Common causes include wrong repo URL, wrong manifest path, missing Git folder, GitHub access issue, ArgoCD repo cache issue, or manifest generation error.
 
-I would verify the image exists, confirm credentials, check Kubernetes secrets, and review events. If the issue affects service availability and cannot be fixed quickly, I would follow the rollback runbook.
-
----
-
-## Example Troubleshooting Scenario: CrashLoopBackOff
-
-Question:
-
-> What would you do if a pod is in CrashLoopBackOff?
-
-Answer:
-
-I would check current and previous logs:
-
-```bash
-kubectl logs POD_NAME -n NAMESPACE
-kubectl logs POD_NAME -n NAMESPACE --previous
-```
-
-Then describe the pod:
-
-```bash
-kubectl describe pod POD_NAME -n NAMESPACE
-```
-
-Common causes include missing environment variables, invalid configuration, database connectivity issues, permission errors, wrong application port, or an application startup failure.
-
-I would fix the root cause, redeploy, and validate rollout. If the service is impacted and the fix is not immediate, I would roll back.
-
----
-
-## Example Troubleshooting Scenario: Rollout Timeout
-
-Question:
-
-> What would you do if `kubectl rollout status` times out?
-
-Answer:
-
-I would check the deployment, ReplicaSets, pods, and events:
-
-```bash
-kubectl describe deployment DEPLOYMENT_NAME -n NAMESPACE
-kubectl get rs -n NAMESPACE
-kubectl get pods -n NAMESPACE -o wide
-kubectl get events -n NAMESPACE --sort-by=.metadata.creationTimestamp | tail -30
-```
-
-A rollout timeout usually means new pods are not becoming ready. The cause could be image pull failure, readiness probe failure, insufficient resources, bad config, or PVC mount issue.
-
-If the deployment causes service impact and the issue is not resolved quickly, I would roll back to the previous known-good revision.
-
----
-
-## Example Troubleshooting Scenario: KUBECONFIG Issue
-
-Question:
-
-> What would you do if the pipeline cannot connect to Kubernetes?
-
-Answer:
-
-I would check whether the pipeline has the correct `KUBECONFIG_B64` variable, whether it is available to the branch, and whether it decodes correctly.
-
-I would validate the kubeconfig in a safe way without printing secrets:
-
-```bash
-echo "$KUBECONFIG_B64" | base64 -d > kubeconfig
-export KUBECONFIG=$PWD/kubeconfig
-kubectl config get-contexts
-kubectl get nodes
-```
-
-Possible causes include missing CI/CD variable, protected variable mismatch, invalid base64 encoding, expired certificate, wrong cluster endpoint, or wrong context.
+In my project, I saw an `app path does not exist` error when the `kubernetes/` path was not yet present in GitHub. I fixed it by adding the Kubernetes manifests to the repo, then refreshed ArgoCD.
 
 ---
 
 ## Senior-Level Trade-Offs
 
-### GitLab CI/CD vs GitHub Actions
+### CI/CD vs GitOps
 
-GitLab CI/CD is powerful for self-hosted DevOps workflows and integrates well with GitLab Runner. GitHub Actions is useful for public portfolio demonstration because the repository is hosted on GitHub.
+CI/CD is useful for validation, testing, scanning, image build, and artifact creation.
 
-In this project, the DevSecOps workflow concepts are applicable to both.
+GitOps is useful for continuous delivery, desired-state reconciliation, drift detection, and cluster state control.
 
-### Manual Deployment vs CI/CD Deployment
+A strong production model often separates CI and CD:
 
-Manual deployment is useful for emergency debugging but should not be the normal path. CI/CD deployment provides repeatability, auditability, and consistency.
+```text
+CI builds and validates artifacts.
+GitOps reconciles desired state into Kubernetes.
+```
+
+### Manual Deployment vs GitOps Deployment
+
+Manual deployment is useful for emergency debugging but should not be the normal path. GitOps deployment provides repeatability, auditability, consistency, and drift detection.
 
 ### Fast Rollback vs Full Troubleshooting
 
 During active service impact, fast rollback is usually better than long troubleshooting. Root cause analysis should happen after service is restored.
 
-### Security Gate Strictness
-
-Blocking every finding can slow delivery, but ignoring high or critical issues creates production risk. A mature process needs severity thresholds, risk acceptance, and documented exceptions.
-
 ### Homelab vs Production
 
-A homelab cannot fully represent enterprise production traffic, compliance, or scale. However, it can demonstrate architecture thinking, operational discipline, failure handling, and hands-on capability.
+A homelab cannot fully represent enterprise production traffic, compliance, or scale. However, it can demonstrate architecture thinking, operational discipline, failure handling, GitOps concepts, and hands-on capability.
 
 ---
 
@@ -408,8 +297,8 @@ A homelab cannot fully represent enterprise production traffic, compliance, or s
 
 If I had more time, I would improve the project by adding:
 
-- ArgoCD GitOps workflow
 - Argo Rollouts for canary deployment
+- Kustomize overlays for dev/staging/prod
 - Automated smoke tests
 - Automated rollback trigger
 - Loki for centralized logging
@@ -422,29 +311,19 @@ If I had more time, I would improve the project by adding:
 - Security Onion network visibility evidence
 - Terraform infrastructure documentation
 - Chaos engineering test case
+- ArgoCD RBAC and notifications
+- External Secrets or Vault integration
 
 ---
 
 ## Questions I Can Answer From This Project
 
-I can confidently discuss:
-
-- How CI/CD pipelines enforce secure delivery
-- How secret scanning reduces credential exposure risk
-- How SAST helps catch insecure code patterns
-- How Trivy scans both Kubernetes config and container images
-- Why SBOM matters in supply chain security
-- How Kubernetes deployments are validated
-- How monitoring and alerting fit into SRE operations
-- How incident tracking supports reliability
-- How rollback decisions should be made
-- How to troubleshoot Kubernetes workload failures
-- How to improve this project toward production maturity
+I can confidently discuss how CI/CD pipelines enforce secure delivery, how secret scanning reduces credential exposure risk, how SAST helps catch insecure code patterns, how Trivy scans Kubernetes config and container images, why SBOM matters, how Kubernetes deployments are validated, how ArgoCD supports GitOps deployment control, how desired-state reconciliation works, how ArgoCD self-healing corrects manual drift, how monitoring and alerting fit into SRE operations, how incident tracking supports reliability, how rollback decisions should be made, and how to troubleshoot Kubernetes workload failures.
 
 ---
 
 ## Strong Interview Closing Statement
 
-This project represents how I approach DevOps and SRE work: automate what can be automated, validate before and after deployment, shift security left, monitor runtime behavior, prepare rollback procedures, document troubleshooting steps, and continuously improve based on evidence.
+This project represents how I approach DevOps and SRE work: automate what can be automated, validate before and after deployment, shift security left, manage desired state through GitOps, monitor runtime behavior, prepare rollback procedures, document troubleshooting steps, and continuously improve based on evidence.
 
 It is not just a tool demo. It is an operating model for delivering and supporting workloads more safely.
