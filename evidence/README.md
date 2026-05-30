@@ -46,6 +46,16 @@ Phase 1 evidence captures the current healthy baseline of the homelab DevSecOps/
 
 ---
 
+## Phase 2 GitOps Evidence
+
+Phase 2 evidence captures the GitOps baseline implementation using ArgoCD.
+
+| Evidence Folder | Description |
+|---|---|
+| [Phase 2 GitOps Baseline](phase-2/README.md) | ArgoCD installation, GitOps application sync, Kubernetes manifest reconciliation, and demo workload validation |
+
+---
+
 ## Screenshot Index
 
 | Evidence | Description | What It Demonstrates |
