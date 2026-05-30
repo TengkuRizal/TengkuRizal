@@ -168,6 +168,7 @@ gitlab-devsecops-pipeline/
 |---|---|
 | [Project Summary](docs/project-summary.md) | One-page DevOps/SRE portfolio summary covering tools, practices, evidence, runbooks, and interview talking points |
 | [Evidence Overview](evidence/README.md) | Explanation of screenshots and operational evidence included in this repository |
+| [Phase 2 GitOps Evidence](evidence/phase-2/README.md) | ArgoCD GitOps baseline evidence showing sync status, application health, and Kubernetes workload reconciliation |
 | [Runbooks Overview](runbooks/README.md) | Index for deployment, rollback, and troubleshooting runbooks |
 | [Interview Talking Points](docs/interview-talking-points.md) | Structured explanation for DevOps/SRE interviews covering architecture, pipeline, security, monitoring, rollback, troubleshooting, and trade-offs |
 
