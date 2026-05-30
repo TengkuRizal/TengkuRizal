@@ -1,0 +1,131 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"argoproj.io/v1alpha1","kind":"Application","metadata":{"annotations":{},"name":"demo-nginx","namespace":"argocd"},"spec":{"destination":{"namespace":"demo","server":"https://kubernetes.default.svc"},"project":"default","source":{"path":"kubernetes","repoURL":"https://github.com/TengkuRizal/TengkuRizal.git","targetRevision":"main"},"syncPolicy":{"automated":{"prune":false,"selfHeal":true},"syncOptions":["CreateNamespace=true"]}}}
+  creationTimestamp: "2026-05-30T00:23:40Z"
+  generation: 11
+  name: demo-nginx
+  namespace: argocd
+  resourceVersion: "10355419"
+  uid: fbae41f4-f544-4dae-9b01-614ffcde880d
+spec:
+  destination:
+    namespace: demo
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: kubernetes
+    repoURL: https://github.com/TengkuRizal/TengkuRizal.git
+    targetRevision: main
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+status:
+  controllerNamespace: argocd
+  health:
+    lastTransitionTime: "2026-05-30T00:23:44Z"
+    status: Healthy
+  history:
+  - deployStartedAt: "2026-05-30T00:27:01Z"
+    deployedAt: "2026-05-30T00:27:02Z"
+    id: 0
+    initiatedBy:
+      automated: true
+    revision: 1220992cd82bac59ecbe31587025ac0d792af0da
+    source:
+      path: kubernetes
+      repoURL: https://github.com/TengkuRizal/TengkuRizal.git
+      targetRevision: main
+  operationState:
+    finishedAt: "2026-05-30T00:27:02Z"
+    message: successfully synced (all tasks run)
+    operation:
+      initiatedBy:
+        automated: true
+      retry:
+        limit: 5
+      sync:
+        revision: 1220992cd82bac59ecbe31587025ac0d792af0da
+        source:
+          path: kubernetes
+          repoURL: https://github.com/TengkuRizal/TengkuRizal.git
+          targetRevision: main
+        syncOptions:
+        - CreateNamespace=true
+    phase: Succeeded
+    startedAt: "2026-05-30T00:27:01Z"
+    syncResult:
+      resources:
+      - group: ""
+        hookPhase: Running
+        kind: Namespace
+        message: namespace/demo configured
+        name: demo
+        namespace: demo
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: ""
+        hookPhase: Running
+        kind: Service
+        message: service/demo-nginx configured
+        name: demo-nginx
+        namespace: demo
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: apps
+        hookPhase: Running
+        images:
+        - 10.10.1.101:5050/kujal/demo-nginx/demo-nginx:v1.0.0
+        kind: Deployment
+        message: deployment.apps/demo-nginx configured
+        name: demo-nginx
+        namespace: demo
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      revision: 1220992cd82bac59ecbe31587025ac0d792af0da
+      source:
+        path: kubernetes
+        repoURL: https://github.com/TengkuRizal/TengkuRizal.git
+        targetRevision: main
+  reconciledAt: "2026-05-30T00:31:38Z"
+  resourceHealthSource: appTree
+  resources:
+  - kind: Namespace
+    name: demo
+    status: Synced
+    version: v1
+  - kind: Service
+    name: demo-nginx
+    namespace: demo
+    status: Synced
+    version: v1
+  - group: apps
+    kind: Deployment
+    name: demo-nginx
+    namespace: demo
+    status: Synced
+    version: v1
+  sourceHydrator: {}
+  sourceType: Directory
+  summary:
+    images:
+    - 10.10.1.101:5050/kujal/demo-nginx/demo-nginx:v1.0.0
+  sync:
+    comparedTo:
+      destination:
+        namespace: demo
+        server: https://kubernetes.default.svc
+      source:
+        path: kubernetes
+        repoURL: https://github.com/TengkuRizal/TengkuRizal.git
+        targetRevision: main
+    revision: 1220992cd82bac59ecbe31587025ac0d792af0da
+    status: Synced

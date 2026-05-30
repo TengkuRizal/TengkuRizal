@@ -1,0 +1,2 @@
+NAME         TYPE       CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
+demo-nginx   NodePort   10.102.245.179   <none>        80:30916/TCP   39d
