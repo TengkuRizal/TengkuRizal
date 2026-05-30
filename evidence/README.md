@@ -60,6 +60,7 @@ Phase 2 evidence captures the GitOps baseline implementation using ArgoCD.
 
 | Evidence | Description | What It Demonstrates |
 |---|---|---|
+| `argocd-demo-nginx-synced.png` | ArgoCD shows `demo-nginx` application as Synced and Healthy | GitOps sync validation, application health, and desired-state reconciliation |
 | `github-actions-passing.png` | GitHub Actions workflow completed successfully | CI/CD automation, pipeline execution, and delivery validation |
 | `kubernetes-nodes-ready.png` | Kubernetes nodes are in Ready state | Cluster health and node-level operational readiness |
 | `kubernetes-pods-running.png` | Kubernetes workloads are running successfully | Workload deployment, pod readiness, and runtime validation |
